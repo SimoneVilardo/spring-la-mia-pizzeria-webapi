@@ -1,0 +1,34 @@
+<html>
+	<head>
+	<meta charset="ISO-8859-1">
+	<html xmlns:th="http://www.thymeleaf.org">
+	<title>Insert title here</title>
+	</head>
+	<body>
+		<header th:fragment="header">
+		    <div class="container-fluid p-0">
+		        <div class="row border-bottom">
+		            <div class="col-12 text-center py-3">
+		                <h1>Pizza</h1>
+		                <p>
+		                    Utente: <span sec:authentication="name"></span>
+		                    <br>
+		                    Ruolo: <span sec:authentication="principal.authorities"></span>
+		                </p>
+		                <a href="/logout" class="btn btn-warning">Logout</a>
+		            </div>
+		        </div>
+		    </div>
+		</header>
+		<a th:fragment="home" href="/" class="btn btn-sm btn-warning border border-black mx-2 px-4">Home</a>
+		
+		<div th:fragment="errorDiv(field)" th:if="${#fields.hasErrors(field)}">
+			<ul>
+			   <li class="list-unstyled"
+			   		th:each="err : ${#fields.errors(field)}">
+			   		* [[${err}]]	
+			   	</li>
+			</ul>
+		</div>
+	</body>
+</html>
