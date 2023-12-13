@@ -15,17 +15,20 @@ public class AuthConf {
     @Bean
   SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         
-        http.authorizeHttpRequests()
-            .requestMatchers("/pizzas/create/**").hasAuthority("ADMIN")
-            .requestMatchers("/pizzas/edit/**").hasAuthority("ADMIN")
-            .requestMatchers("/pizzas/delete/**").hasAuthority("ADMIN")
-            .requestMatchers("/pizzas/{id}/offertaspeciale/create/**").hasAuthority("ADMIN")
-            .requestMatchers("/pizzas/{pizzaId}/offertaspeciale/edit/**").hasAuthority("ADMIN")
-            .requestMatchers("/ingredienti/create/**").hasAuthority("ADMIN")
-            .requestMatchers("/ingredienti/delete/**").hasAuthority("ADMIN")
-            .requestMatchers("/**").hasAnyAuthority("ADMIN", "USER")
-            .and().formLogin()
-            .and().logout()
+        http.csrf().disable()
+	        	.cors().disable()
+	          	.authorizeHttpRequests()
+	          	.requestMatchers("/pizzas/create/**").hasAuthority("ADMIN")
+	          	.requestMatchers("/pizzas/edit/**").hasAuthority("ADMIN")
+	          	.requestMatchers("/pizzas/delete/**").hasAuthority("ADMIN")
+	          	.requestMatchers("/pizzas/{id}/offertaspeciale/create/**").hasAuthority("ADMIN")
+	          	.requestMatchers("/pizzas/{pizzaId}/offertaspeciale/edit/**").hasAuthority("ADMIN")
+	          	.requestMatchers("/ingredienti/create/**").hasAuthority("ADMIN")
+	          	.requestMatchers("/ingredienti/delete/**").hasAuthority("ADMIN")
+	          	.requestMatchers("/api/v1.0/pizzas/**").permitAll()
+	          	.requestMatchers("/**").hasAnyAuthority("ADMIN", "USER")
+	            .and().formLogin()
+	            .and().logout()
         ;
         
         return http.build();

@@ -2,6 +2,8 @@ package org.java.spring.pojo;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class OffertaSpeciale {
 	private LocalDate data_fine;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Pizza pizza;
 	
 	public OffertaSpeciale() { }
