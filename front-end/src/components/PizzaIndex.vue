@@ -9,19 +9,32 @@ const props = defineProps({
 });
 </script>
 <template>
-    <div>
-        <ul>
-            <h1>Pizze</h1>
-            <li 
-                class="list-elem"
-                v-for="pizza in pizzas" 
-                :key="pizza.id"
-            >
-                {{ pizza.nome }}
-            </li>
-        </ul>
-    </div>
+    <table class="table table-dark table-hover index-table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Strumenti</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="pizza in pizzas" :key="pizza.id">
+                <th scope="row" v-text="pizza.id"></th>
+                <td v-text="pizza.nome"></td>
+                <td>
+                    <button class="btn btn-info">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </template>
-<style scoped>
-    
+
+<style lang="scss" scoped>
+@use '../styles/generals.scss' as *;
+
+.index-table {
+    width: 50vw !important;
+}
 </style>
