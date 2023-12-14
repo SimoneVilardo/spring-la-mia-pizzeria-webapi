@@ -35,7 +35,7 @@ const props = defineProps({
 </script>
 <template>
     <h1 class="text-center">LE MIE PIZZE</h1>
-    <form class="index-filter-form py-5" @submit.prevent="filterPizzas">
+    <form class="index-filter-form py-5">
         <input type="text" placeholder="Filtra le pizze per nome" class="form-control d-inline-block" v-model="nomeFilter">
     </form>
     <table class="table table-dark table-hover index-table">
